@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   nginx:
@@ -14,13 +14,13 @@ services:
       - app-network
 
   php:
-    image: php:7.4-fpm
+    build: ./php # Użyj ścieżki do folderu z Twoim Dockerfile
     volumes:
       - ./www:/var/www/html
+      - ./php/php.ini:/usr/local/etc/php/php.ini
     networks:
       - app-network
 
 networks:
   app-network:
     driver: bridge
-
