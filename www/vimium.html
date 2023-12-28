@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vimium</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <header>
+        <pre>
+          ___                       ___                       ___           ___     
+         /\__\          ___        /\__\          ___        /\__\         /\__\    
+        /:/  /         /\  \      /::|  |        /\  \      /:/  /        /::|  |   
+       /:/  /          \:\  \    /:|:|  |        \:\  \    /:/  /        /:|:|  |   
+      /:/__/  ___      /::\__\  /:/|:|__|__      /::\__\  /:/  /  ___   /:/|:|__|__ 
+      |:|  | /\__\  __/:/\/__/ /:/ |::::\__\  __/:/\/__/ /:/__/  /\__\ /:/ |::::\__\
+      |:|  |/:/  / /\/:/  /    \/__/~~/:/  / /\/:/  /    \:\  \ /:/  / \/__/~~/:/  /
+      |:|__/:/  /  \::/__/           /:/  /  \::/__/      \:\  /:/  /        /:/  / 
+       \::::/__/    \:\__\          /:/  /    \:\__\       \:\/:/  /        /:/  /  
+        ~~~~         \/__/         /:/  /      \/__/        \::/  /        /:/  /   
+                                   \/__/                     \/__/         \/__/    
+        </pre>
+    </header>
+
+    <section>
+        <p>
+            Skróty Vima dostępne w przeglądarce internetowej. Wystarczy zainstalować rozszerzenie Vimium.
+            Nie będę omawiał skrótów, są rozpisane <a href="https://github.com/philc/vimium">tutaj</a>, ale jest coś co
+            wyjątkowo mi się spodobało.
+            Wszystkie linki na stronie oznaczają się skrótem po naciśnieciu klawisza 'f'. Aby 'kliknąć' w ten obiekt
+            wystarczy wcisnąć przycisk na klawiaturze z odpowiadającą mu literą.
+            <img src="assets/images/vimium2.png" alt="vimium example2">
+        </p>
+    </section>
+
+    <div class="button-container">
+        <button onclick="goBack()">back</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

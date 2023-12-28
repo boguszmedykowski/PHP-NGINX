@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obsidian</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <pre>
+
+
+
+            ,---,                 ,--,         ,---,  ,--,                            
+   ,---.  ,---.'|               ,--.'|       ,---.'|,--.'|                     ,---,  
+  '   ,'\ |   | :     .--.--.   |  |,        |   | :|  |,                  ,-+-. /  | 
+ /   /   |:   : :    /  /    '  `--'_        |   | |`--'_      ,--.--.    ,--.'|'   | 
+.   ; ,. ::     |,-.|  :  /`./  ,' ,'|     ,--.__| |,' ,'|    /       \  |   |  ,"' | 
+'   | |: :|   : '  ||  :  ;_    '  | |    /   ,'   |'  | |   .--.  .-. | |   | /  | | 
+'   | .; :|   |  / : \  \    `. |  | :   .   '  /  ||  | :    \__\/: . . |   | |  | | 
+|   :    |'   : |: |  `----.   \'  : |__ '   ; |:  |'  : |__  ," .--.; | |   | |  |/  
+ \   \  / |   | '/ : /  /`--'  /|  | '.'||   | '/  '|  | '.'|/  /  ,.  | |   | |--'   
+  `----'  |   :    |'--'.     / ;  :    ;|   :    :|;  :    ;  :   .'   \|   |/       
+          /    \  /   `--'---'  |  ,   /  \   \  /  |  ,   /|  ,     .-./'---'        
+          `-'----'               ---`-'    `----'    ---`-'  `--`---'                 
+                                                                                      
+
+</pre>
+    </header>
+
+    <body>
+
+        <section>
+            <p>
+                Notatki są twoją własnością. Wspierane formaty to między innymi: txt, md, html.
+                Dowiedziałeś się czegoś fajnego? - Zapisz to. Podlinkuj w notatce inne notatki. Tworzą się między nimi połączenia, które w
+                podglądzie graficznym przypominają neurony. Właśnie tworzy się mapa twojej wiedzy do której masz szybki
+                dostęp.
+            </p>
+
+            <p>
+                Przejdź do Settings -> Editor -> Vim key bindings, aby korzystać ze skrótów Vim.
+            </p>
+
+            <p>
+                Stwórz repozytorium Gita w katalogu, w którym trzymasz notatki. Dodaj alias w pliku ~/.bashrc:
+                <code>alias obsidian='cd /home/boziu/Documents/obsidian && git add . && git commit -m "alias commit" && git push'</code>
+                Teraz będąc w katalogu z repozytorium gita, wpisz w shellu <code>obsidian</code>, aby szybko wypushować
+                je do zdalnego repo.
+            </p>
+
+        </section>
+
+    <div class="button-container">
+        <button onclick="goBack()">back</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
