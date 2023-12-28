@@ -1,45 +1,50 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = strip_tags(trim($_POST["name"]));
-    $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-    $message = trim($_POST["message"]);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
 
-    // Check that data was sent to the mailer.
-    if ( empty($name) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        // Set a 400 (bad request) response code and exit.
-        http_response_code(400);
-        echo "Please complete the form and try again.";
-        exit;
+require 'vendor/autoload.php';
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $mail = new PHPMailer(true);
+
+    try {
+        // Odbiór i oczyszczanie danych z formularza
+        $name = isset($_POST['name']) ? strip_tags(trim($_POST['name'])) : '';
+        $email = isset($_POST['email']) ? strip_tags(trim($_POST['email'])) : '';
+        $message = isset($_POST['message']) ? strip_tags(trim($_POST['message'])) : '';
+
+        // Włącz debugowanie
+        $mail->SMTPDebug = 2; // Ustawienie poziomu debugowania na 2
+
+        // Konfiguracja PHPMailer do używania Gmail
+        $mail->isSMTP();
+        $mail->Host = $_ENV['SMTP_HOST'];
+        $mail->SMTPAuth = true;
+        $mail->Username = $_ENV['SMTP_USER'];
+        $mail->Password = $_ENV['SMTP_PASSWORD'];
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = $_ENV['SMTP_PORT'];
+
+        // Adresaci
+        $mail->setFrom($email, $name);
+        $mail->addReplyTo($email, $name);
+        $mail->addAddress('bogusz.medykowski@gmail.com', 'Bogusz');
+
+        // Treść wiadomości
+        $mail->isHTML(true);
+        $mail->Subject = 'Nowa wiadomość od ' . $name;
+        $mail->Body = 'Imię: ' . $name . '<br>Email: ' . $email . '<br>Wiadomość: ' . $message;
+        $mail->AltBody = 'Imię: ' . $name . "\nEmail: " . $email . "\nWiadomość: " . $message;
+
+        $mail->send();
+        echo 'Wiadomość została wysłana';
+    } catch (Exception $e) {
+        echo "Wiadomość nie mogła zostać wysłana. Błąd PHPMailer: {$mail->ErrorInfo}";
     }
-
-    // Set the recipient email address.
-    $recipient = "bogusz.medykowski@gmail.com";
-
-    // Set the email subject.
-    $subject = "New contact from $name";
-
-    // Build the email content.
-    $email_content = "Name: $name\n";
-    $email_content .= "Email: $email\n\n";
-    $email_content .= "Message:\n$message\n";
-
-    // Build the email headers.
-    $email_headers = "From: $name <$email>";
-
-    // Send the email.
-    if (mail($recipient, $subject, $email_content, $email_headers)) {
-        // Set a 200 (okay) response code.
-        http_response_code(200);
-        echo "Thank You! Your message has been sent.";
-    } else {
-        // Set a 500 (internal server error) response code.
-        http_response_code(500);
-        echo "Oops! Something went wrong, we couldn't send your message.";
-    }
-
 } else {
-    // Not a POST request, set a 403 (forbidden) response code.
-    http_response_code(403);
-    echo "There was a problem with your submission, please try again.";
+    echo 'Błąd: Żądanie musi być typu POST';
 }
 ?>

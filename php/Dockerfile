@@ -16,11 +16,12 @@ WORKDIR /var/www/html
 # Najpierw kopiuj tylko plik composer.json (i composer.lock jeśli istnieje)
 COPY composer.json composer.lock* /var/www/html/
 
+COPY . /var/www/html
 # Ustawienie zmiennej środowiskowej, aby pozwolić Composerowi na uruchamianie jako root
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Instalacja zależności za pomocą Composera
 RUN composer install --no-interaction --prefer-dist
+RUN composer update
+RUN composer require vlucas/phpdotenv
 
-# Teraz kopiowanie reszty plików projektu
-COPY . /var/www/html

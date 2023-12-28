@@ -47,20 +47,17 @@
             <li><a href="https://inzynierka.fly.dev/login" target="_blank">Flet web app</a></li>
         </ul>
 
-        <section>
-            <!-- Existing content -->
 
-            <h2>Contact Me</h2>
-            <form action="send_email.php" method="post">
-                <label for="name">Name:</label><br>
-                <input type="text" id="name" name="name" required><br>
-                <label for="email">Email:</label><br>
-                <input type="email" id="email" name="email" required><br>
-                <label for="message">Message:</label><br>
-                <textarea id="message" name="message" required></textarea><br>
-                <input type="submit" value="Send">
-            </form>
-        </section>
+        <h2>Contact Me</h2>
+        <form action="send_email.php" method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" required></textarea><br>
+            <input type="submit" value="Send">
+        </form>
 
     </section>
 
